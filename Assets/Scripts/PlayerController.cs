@@ -45,6 +45,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.SetActive(false);
+        if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null) { collision.gameObject.SetActive(false); }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 
-{
+{ 
     public GameObject Prefab;
     private int numEnemies = 5;
     private GameObject[] allEnemys;
@@ -29,6 +29,6 @@ public class ObstacleGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

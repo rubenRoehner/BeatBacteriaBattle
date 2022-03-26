@@ -21,6 +21,15 @@ public class GameManager : MonoBehaviour
         Reset();
     }
 
+    public void Merge(GameObject go1, GameObject go2)
+    {
+        if(go1.active == true && go2.active == true)
+        {
+            go1.SetActive(false);
+            go2.transform.localScale = new Vector3(2 ,2, 2);
+        }
+    }
+
     private void Update()
     {
         if (GameOver && (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(0)))
