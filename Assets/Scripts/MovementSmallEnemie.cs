@@ -8,6 +8,7 @@ public class MovementSmallEnemie : MonoBehaviour
 
     Rigidbody2D rid;
     float move = 6f;
+    public int State = 1;
     void Start()
     {
         rid = GetComponent<Rigidbody2D>();

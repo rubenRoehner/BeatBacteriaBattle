@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public bool GameOver = false;
+    private int enemyLeft;
 
     private void Awake()
     {
@@ -26,7 +27,8 @@ public class GameManager : MonoBehaviour
         if(go1.active == true && go2.active == true)
         {
             go1.SetActive(false);
-            go2.transform.localScale = new Vector3(2 ,2, 2);
+            go2.transform.localScale = new Vector3(go2.transform.localScale.x + 1 , go2.transform.localScale.y + 1, 2);
+            go2.GetComponent<MovementSmallEnemie>().State++;
         }
     }
 
