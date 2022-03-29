@@ -24,7 +24,7 @@ public class MovementSmallEnemie : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<MovementSmallEnemie>() != null)
+        if(collision.gameObject.GetComponent<MovementSmallEnemie>() != null && collision.gameObject.GetComponent<MovementSmallEnemie>().State == State)
         {
             GameManager.Instance.Merge(gameObject, collision.gameObject);
         }
