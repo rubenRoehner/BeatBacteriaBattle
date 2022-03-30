@@ -1,12 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public bool GameOver = false;
-    private int enemyLeft;
 
     private void Awake()
     {
@@ -19,8 +19,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        Reset();
+
     }
+
+
 
     public void Merge(GameObject go1, GameObject go2)
     {
@@ -32,26 +34,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    internal void gameOver()
+    {
+        SceneManager.LoadScene(2);
+    }
+
     private void Update()
     {
-        if (GameOver && (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(0)))
-        {
-            SceneManager.LoadScene(0);
-            Reset();
-        }
-    }
 
-    public void IsGameOver()
-    {
-        GameOver = true;
-
-        //foreach (var move in GameObject.FindObjectsOfType<MovingObject>()) move.StopMove();
-    }
-
-
-
-    public void Reset()
-    {
-        GameOver = false;
     }
 }

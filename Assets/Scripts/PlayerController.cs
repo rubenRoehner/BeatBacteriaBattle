@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();   
+        rigidBody = GetComponent<Rigidbody2D>();
     }
     private void ChangeSize(int i)
     {
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
         ChangeSize(state);
 
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             //rigidBody.velocity += new Vector2(0, Force);
             rigidBody.AddForce(new Vector2(0, Force));
@@ -70,6 +71,11 @@ public class PlayerController : MonoBehaviour
         {
             state++;
             changeSize = true;
-            collision.gameObject.SetActive(false); } else if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null) { gameObject.SetActive(false); }
+            GameObject.Find("EnemyManager").GetComponent<ObstacleGenerator>().Kill(collision.gameObject.GetComponent<MovementSmallEnemie>().State);
+            collision.gameObject.SetActive(false);
+
+        }
+        else if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null)
+        {  SceneManager.LoadScene(2); }
     }
 }
