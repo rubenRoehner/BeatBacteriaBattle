@@ -7,7 +7,7 @@ public class ObstacleGenerator : MonoBehaviour
 
 { 
     public GameObject Prefab;
-    private int numEnemies = 5;
+    private int numEnemies = 30;
     private GameObject[] allEnemys;
     public float Min = -1;
     public float Max = 1;
@@ -19,11 +19,17 @@ public class ObstacleGenerator : MonoBehaviour
     public void Start()
     {
         allEnemys = new GameObject[numEnemies];
-        for (int i = 0; i < numEnemies; i++)
+        allEnemys[0] = CreateObstacle();
+        allEnemys[0].transform.localScale = new Vector3(7, 7, 7);
+        allEnemys[0].GetComponent<MovementSmallEnemie>().State = 7;
+        AddEnemy(7);
+
+        for (int i = 1; i < numEnemies; i++)
         {
             allEnemys[i] = CreateObstacle();
             AddEnemy(1);
         }
+
     }
     public void Kill(int stateOfEnemy)
     {
