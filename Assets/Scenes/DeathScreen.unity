@@ -553,8 +553,8 @@ GameObject:
   - component: {fileID: 1525279294}
   - component: {fileID: 1525279293}
   - component: {fileID: 1525279292}
-  - component: {fileID: 1525279291}
   - component: {fileID: 1525279290}
+  - component: {fileID: 1525279291}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1525279289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d520688a2b23434ebd0d275acaf5dbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 27c49d746ee10470c995006e7fca20b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1525279292
@@ -740,8 +740,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1525279291}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartGameMenu
+        m_TargetAssemblyTypeName: DeathScreen, Assembly-CSharp
+        m_MethodName: OnRestartClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

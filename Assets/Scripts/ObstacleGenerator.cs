@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,37 +5,27 @@ public class ObstacleGenerator : MonoBehaviour
 
 { 
     public GameObject Prefab;
-    private int numEnemies = 30;
+    private static readonly int NumEnemies = 30;
     private GameObject[] allEnemys;
     public float Min = -1;
     public float Max = 1;
 
-    public int enemyLeft;
+    private int enemyLeft;
     public Text lbl_enemyLeft;
 
 
     public void Start()
     {
-        allEnemys = new GameObject[numEnemies];
-        allEnemys[0] = CreateObstacle();
-        allEnemys[0].transform.localScale = new Vector3(7, 7, 7);
-        allEnemys[0].GetComponent<MovementSmallEnemie>().State = 7;
-        AddEnemy(7);
-
-        for (int i = 1; i < numEnemies; i++)
-        {
-            allEnemys[i] = CreateObstacle();
-            AddEnemy(1);
-        }
-
+        CreateEnemies();
     }
+
     public void Kill(int stateOfEnemy)
     {
         enemyLeft -= stateOfEnemy;
-        UpdateText_enemysLeft();
+        UpdateEnemiesLeft();
         if (enemyLeft == 0)
         {
-            GameManager.Instance.gameOver();
+            GameManager.Instance.GameOver();
         }
 
 
@@ -46,9 +34,10 @@ public class ObstacleGenerator : MonoBehaviour
     public void AddEnemy(int v)
     {
         enemyLeft += v;
-        UpdateText_enemysLeft();
+        UpdateEnemiesLeft();
     }
-    private void UpdateText_enemysLeft()
+
+    private void UpdateEnemiesLeft()
     {
         lbl_enemyLeft.text = "Enemys left: " + enemyLeft;
     }
@@ -58,5 +47,28 @@ public class ObstacleGenerator : MonoBehaviour
         var obstacle = Instantiate(Prefab);
         obstacle.transform.position = new Vector3(Random.Range(Min, Max), Random.Range(Min, Max), 0f);
         return obstacle;
+    }
+
+    public void Reset()
+    {
+        enemyLeft = 0;
+        CreateEnemies();
+        UpdateEnemiesLeft();
+    }
+
+    private void CreateEnemies()
+    {
+        allEnemys = new GameObject[NumEnemies];
+        allEnemys[0] = CreateObstacle();
+        allEnemys[0].transform.localScale = new Vector3(7, 7, 7);
+        allEnemys[0].GetComponent<MovementSmallEnemie>().State = 7;
+        AddEnemy(7);
+
+        for (int i = 1; i < NumEnemies; i++)
+        {
+            allEnemys[i] = CreateObstacle();
+            AddEnemy(1);
+        }
+
     }
 }

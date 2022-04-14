@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public float Force = 50f;
+    public float FastSpeed = 80F;
+    public float SlowSpeed = 20F;
+    private float CurrentSpeed = 50F;
     private int state = 1;
     bool changeSize = false;
 
@@ -16,7 +14,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        this.CurrentSpeed = SlowSpeed;
     }
+
     private void ChangeSize(int i)
     {
         if (changeSize)
@@ -39,28 +39,30 @@ public class PlayerController : MonoBehaviour
 
         ChangeSize(state);
 
+        UpdateSpeed();
+
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             //rigidBody.velocity += new Vector2(0, Force);
-            rigidBody.AddForce(new Vector2(0, Force));
+            rigidBody.AddForce(new Vector2(0, CurrentSpeed));
         }
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             //rigidBody.velocity += new Vector2(-Force, 0);
-            rigidBody.AddForce(new Vector2(-Force, 0));
+            rigidBody.AddForce(new Vector2(-CurrentSpeed, 0));
         }
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             //rigidBody.velocity += new Vector2(0, -Force);
-            rigidBody.AddForce(new Vector2(0, -Force));
+            rigidBody.AddForce(new Vector2(0, -CurrentSpeed));
         }
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             //rigidBody.velocity += new Vector2(Force, 0);
-            rigidBody.AddForce(new Vector2(Force, 0));
+            rigidBody.AddForce(new Vector2(CurrentSpeed, 0));
         }
     }
 
@@ -76,6 +78,21 @@ public class PlayerController : MonoBehaviour
 
         }
         else if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null)
-        {  SceneManager.LoadScene(2); }
+        {
+            GameManager.Instance.GameOver();
+        }
+    }
+
+    private void UpdateSpeed()
+    {
+        switch(HeartbeatController.Instance.heartBeatRate)
+        {
+            case HeartBeatRate.SLOW:
+                this.CurrentSpeed = SlowSpeed;
+                break;
+            case HeartBeatRate.FAST:
+                this.CurrentSpeed = FastSpeed;
+                break;
+        }
     }
 }

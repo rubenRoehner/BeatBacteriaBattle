@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,8 +16,11 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
+    }
 
-
+    void Start()
+    {
+        StartGame();
     }
 
 
@@ -30,17 +31,40 @@ public class GameManager : MonoBehaviour
         {
             go1.SetActive(false);
             go2.transform.localScale = new Vector3(go2.transform.localScale.x + 1 , go2.transform.localScale.y + 1, 2);
-            go2.GetComponent<MovementSmallEnemie>().State++;
+            go2.GetComponent<MovementSmallEnemie>().State *= 2;
         }
     }
 
-    internal void gameOver()
+    public void GameOver()
     {
+        HeartbeatController.Instance.Pause();
         SceneManager.LoadScene(2);
+    }
+
+    public void StartGame()
+    {
+        HeartbeatController.Instance.Play();
+    }
+
+    public void Restart()
+    {
+        StartGame();
+        SceneManager.LoadScene(1);
     }
 
     private void Update()
     {
 
     }
+
+    public void Pause()
+    {
+
+    }
+
+    public void Resume()
+    {
+
+    }
+
 }

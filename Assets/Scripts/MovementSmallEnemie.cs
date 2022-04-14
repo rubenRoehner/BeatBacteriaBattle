@@ -7,8 +7,11 @@ public class MovementSmallEnemie : MonoBehaviour
     // Start is called before the first frame update
 
     Rigidbody2D rid;
-    float move = 6f;
+    private float currentSpeed = 4f;
     public int State = 1;
+    public float SlowSpeed = 4F;
+    public float HighSpeed = 20F;
+
     void Start()
     {
         rid = GetComponent<Rigidbody2D>();
@@ -18,7 +21,7 @@ public class MovementSmallEnemie : MonoBehaviour
     void Update()
     {
 
-        rid.AddForce(new Vector2(Random.Range(-move, move), Random.Range(-move, move)));
+        rid.AddForce(new Vector2(Random.Range(-currentSpeed, currentSpeed), Random.Range(-currentSpeed, currentSpeed)));
         
     }
 
@@ -28,6 +31,19 @@ public class MovementSmallEnemie : MonoBehaviour
         {
             GameManager.Instance.Merge(gameObject, collision.gameObject);
         }
-        
+
+    }
+
+    private void UpdateSpeed()
+    {
+        switch (HeartbeatController.Instance.heartBeatRate)
+        {
+            case HeartBeatRate.SLOW:
+                this.currentSpeed = SlowSpeed;
+                break;
+            case HeartBeatRate.FAST:
+                this.currentSpeed = HighSpeed;
+                break;
+        }
     }
 }
