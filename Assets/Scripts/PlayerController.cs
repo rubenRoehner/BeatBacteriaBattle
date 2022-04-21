@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
             state++;
             changeSize = true;
             GameObject.Find("EnemyManager").GetComponent<ObstacleGenerator>().Kill(collision.gameObject.GetComponent<MovementSmallEnemie>().State);
-            collision.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
 
         }
         else if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null)

@@ -36,6 +36,17 @@ public class HeartbeatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.Instance.gameState == GameState.PAUSED)
+        {
+            if(audioSource.isPlaying)
+            {
+                Pause();
+            }
+        } else if(!audioSource.isPlaying)
+        {
+            Play();
+        }
+
         if (isPaused) return;
 
         this.timeElapsed += Time.deltaTime;

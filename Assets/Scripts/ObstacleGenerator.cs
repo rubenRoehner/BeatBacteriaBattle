@@ -23,12 +23,10 @@ public class ObstacleGenerator : MonoBehaviour
     {
         enemyLeft -= stateOfEnemy;
         UpdateEnemiesLeft();
-        if (enemyLeft == 0)
+        if (enemyLeft <= 0)
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.CompleteLevel();
         }
-
-
     }
 
     public void AddEnemy(int v)
