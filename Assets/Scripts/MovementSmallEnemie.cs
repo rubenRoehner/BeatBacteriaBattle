@@ -27,7 +27,7 @@ public class MovementSmallEnemie : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<MovementSmallEnemie>() != null && collision.gameObject.GetComponent<MovementSmallEnemie>().State == State)
+        if(collision.gameObject.GetComponent<MovementSmallEnemie>() != null && collision.gameObject.GetComponent<MovementSmallEnemie>().State == State && State < 6)
         {
             GameManager.Instance.Merge(gameObject, collision.gameObject);
         }
@@ -36,7 +36,7 @@ public class MovementSmallEnemie : MonoBehaviour
 
     private void UpdateSpeed()
     {
-        switch (HeartbeatController.Instance.heartBeatRate)
+        switch (GameManager.Instance.heartbeatController.heartBeatRate)
         {
             case HeartBeatRate.SLOW:
                 this.currentSpeed = SlowSpeed;

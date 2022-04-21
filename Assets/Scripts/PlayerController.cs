@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log()
 
         ChangeSize(state);
 
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateSpeed()
     {
-        switch(HeartbeatController.Instance.heartBeatRate)
+        switch(GameManager.Instance.heartbeatController.heartBeatRate)
         {
             case HeartBeatRate.SLOW:
                 this.CurrentSpeed = SlowSpeed;

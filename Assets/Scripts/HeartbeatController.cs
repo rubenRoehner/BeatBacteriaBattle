@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class HeartbeatController : MonoBehaviour
 {
-    public static HeartbeatController Instance;
-
     public AudioClip SlowHeartBeat;
     public AudioClip FastHeartBeat;
     public float SwitchIntervall = 20f;
@@ -13,19 +11,6 @@ public class HeartbeatController : MonoBehaviour
     private AudioSource audioSource;
     private float timeElapsed = 0f;
     private bool isPaused = false;
-
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
 
     // Start is called before the first frame update
     void Start()

@@ -12,7 +12,6 @@ public class PauseMenu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log(System.Enum.GetName(typeof(GameState), GameManager.Instance.gameState));
             if(GameManager.Instance.gameState == GameState.PAUSED)
             {
                 Resume();
@@ -26,7 +25,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        Debug.Log("Resume");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameManager.Instance.gameState = GameState.IN_GAME;

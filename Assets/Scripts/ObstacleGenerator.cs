@@ -60,6 +60,7 @@ public class ObstacleGenerator : MonoBehaviour
         allEnemys[0] = CreateObstacle();
         allEnemys[0].transform.localScale = new Vector3(7, 7, 7);
         allEnemys[0].GetComponent<MovementSmallEnemie>().State = 7;
+        allEnemys[0].GetComponent<Animator>().SetInteger("EnemyLevel", 4);
         AddEnemy(7);
 
         for (int i = 1; i < NumEnemies; i++)

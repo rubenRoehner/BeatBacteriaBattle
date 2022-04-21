@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject completeLevelUI;
     public GameObject gameOverUI;
+    public HeartbeatController heartbeatController;
 
     private int currentLevel = 0;
 
@@ -38,6 +39,9 @@ public class GameManager : MonoBehaviour
             Destroy(go1);
             go2.transform.localScale = new Vector3(go2.transform.localScale.x + 1 , go2.transform.localScale.y + 1, 2);
             go2.GetComponent<MovementSmallEnemie>().State *= 2;
+            int state = go2.GetComponent<MovementSmallEnemie>().State;
+            int enemyLevel = (int) Mathf.Log(state, 2) + 1;
+            go2.GetComponent<Animator>().SetInteger("EnemyLevel", enemyLevel);
         }
     }
 
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         gameState = GameState.IN_GAME;
-        HeartbeatController.Instance.Play();
+        heartbeatController.Play();
     }
 
     public void Restart()
@@ -62,9 +66,9 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel()
     {
-        gameState = GameState.LEVEL_COMPLETED;
+        gameState = GameState.LEVEL_COMPLETE;
         completeLevelUI.SetActive(true);
-        HeartbeatController.Instance.Pause();
+        heartbeatController.Pause();
         Time.timeScale = 0f;
     }
 
@@ -76,11 +80,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
+        Debug.Log(System.Enum.GetName(typeof(GameState), gameState));
     }
 }
 
 public enum GameState
 {
-    IN_GAME, PAUSED, LEVEL_COMPLETED, GAME_OVER
+    IN_GAME, PAUSED, LEVEL_COMPLETE, GAME_OVER
 }
