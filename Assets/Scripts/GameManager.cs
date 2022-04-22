@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject completeLevelUI;
     public GameObject gameOverUI;
     public HeartbeatController heartbeatController;
+    public ObstacleGenerator obstacleGenerator;
+    public PlayerController playerController;
 
     private int currentLevel = 0;
 
@@ -30,11 +31,9 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
-
-
     public void Merge(GameObject go1, GameObject go2)
     {
-        if(go1.active == true && go2.active == true)
+        if(go1.activeSelf == true && go2.activeSelf == true)
         {
             Destroy(go1);
             go2.transform.localScale = new Vector3(go2.transform.localScale.x + 1 , go2.transform.localScale.y + 1, 2);
@@ -49,18 +48,22 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.GAME_OVER;
         gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void StartGame()
     {
+        Time.timeScale = 1f;
         gameState = GameState.IN_GAME;
-        heartbeatController.Play();
     }
 
     public void Restart()
     {
         gameState = GameState.IN_GAME;
         gameOverUI.SetActive(false);
+        completeLevelUI.SetActive(false);
+        obstacleGenerator.Reset();
+        playerController.Reset();
         StartGame();
     }
 
@@ -68,7 +71,6 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.LEVEL_COMPLETE;
         completeLevelUI.SetActive(true);
-        heartbeatController.Pause();
         Time.timeScale = 0f;
     }
 

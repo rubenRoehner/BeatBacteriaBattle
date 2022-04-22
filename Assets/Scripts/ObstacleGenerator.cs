@@ -5,7 +5,7 @@ public class ObstacleGenerator : MonoBehaviour
 
 { 
     public GameObject Prefab;
-    private static readonly int NumEnemies = 30;
+    private static readonly int NumEnemies = 10;
     private GameObject[] allEnemys;
     public float Min = -1;
     public float Max = 1;
@@ -50,8 +50,17 @@ public class ObstacleGenerator : MonoBehaviour
     public void Reset()
     {
         enemyLeft = 0;
+        RemoveExistingEnemies();
         CreateEnemies();
         UpdateEnemiesLeft();
+    }
+
+    private void RemoveExistingEnemies()
+    {
+        foreach(GameObject enemy in allEnemys)
+        {
+            Destroy(enemy);
+        }
     }
 
     private void CreateEnemies()

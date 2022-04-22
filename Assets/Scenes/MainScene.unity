@@ -454,9 +454,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
-  completeLevelUI: {fileID: 1101274718}
+  completeLevelUI: {fileID: 317024340}
   gameOverUI: {fileID: 1043243510}
   heartbeatController: {fileID: 973530721}
+  obstacleGenerator: {fileID: 596546995}
+  playerController: {fileID: 1785234334}
 --- !u!1 &90947836
 GameObject:
   m_ObjectHideFlags: 0
@@ -8649,6 +8651,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parralax: 0.2
+--- !u!114 &1785234334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4789278064282661603, guid: fd265f33487d1d64b89532a639c40b2c, type: 3}
+  m_PrefabInstance: {fileID: 4789278063291543263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e408f3bddea4eeebc3301c0392d231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1843994288
 GameObject:
   m_ObjectHideFlags: 0
@@ -9303,15 +9316,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4789278064282661605, guid: fd265f33487d1d64b89532a639c40b2c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4789278064282661605, guid: fd265f33487d1d64b89532a639c40b2c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4789278064282661605, guid: fd265f33487d1d64b89532a639c40b2c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4789278064282661605, guid: fd265f33487d1d64b89532a639c40b2c, type: 3}
       propertyPath: m_LocalPosition.x

@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log()
-
         ChangeSize(state);
 
         UpdateSpeed();
@@ -95,5 +93,12 @@ public class PlayerController : MonoBehaviour
                 this.CurrentSpeed = FastSpeed;
                 break;
         }
+    }
+
+    public void Reset()
+    {
+        transform.position = new Vector3(0, 0, 0);
+        transform.localScale = new Vector3(1.1f, 1.1f, 2f);
+        state = 1;
     }
 }
