@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,8 +12,9 @@ public class GameManager : MonoBehaviour
     public HeartbeatController heartbeatController;
     public ObstacleGenerator obstacleGenerator;
     public PlayerController playerController;
+    public GameUI gameUI;
 
-    private int currentLevel = 0;
+    public int currentLevel = 0;
 
     private void Awake()
     {
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.IN_GAME;
         gameOverUI.SetActive(false);
         completeLevelUI.SetActive(false);
-        obstacleGenerator.Reset();
+        obstacleGenerator.Reset(currentLevel);
         playerController.Reset();
         StartGame();
     }
@@ -77,12 +79,14 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         currentLevel++;
-        Restart();
-    }
-
-    private void Update()
-    {
-        Debug.Log(System.Enum.GetName(typeof(GameState), gameState));
+        if(currentLevel > 2)
+        {
+            SceneManager.LoadScene(1);
+        } else
+        {
+            gameUI.UpdateLevelLabel(currentLevel + 1);
+            Restart();
+        }
     }
 }
 
