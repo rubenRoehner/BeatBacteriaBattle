@@ -32,8 +32,11 @@ public class ObstacleGenerator : MonoBehaviour
     private void UpdateEnemiesLeft()
     {
         int numEnemies = NumEnemies[GameManager.Instance.currentLevel];
-        float value = 1 - (enemyLeft / numEnemies);
-        Debug.Log("enemyLeft: " + enemyLeft + "NumEnemies" + numEnemies);
+        int sizeArray = allEnemys.Length;
+        float value = 1 - ((enemyLeft - 1) / numEnemies);
+
+        Debug.Log("enemyLeft: " + enemyLeft + ", NumEnemies: " + numEnemies + ", ArraySize: " + sizeArray + "value" + value);
+
         GameManager.Instance.gameUI.slider.value = value;
     }
 
@@ -62,18 +65,18 @@ public class ObstacleGenerator : MonoBehaviour
 
     private void CreateEnemies(int level)
     {
-        allEnemys = new GameObject[NumEnemies[level]];
+        allEnemys = new GameObject[NumEnemies[level] + 1];
         allEnemys[0] = CreateObstacle();
-        int currentBossSize = BossSize[GameManager.Instance.currentLevel];
+        int currentBossSize = BossSize[level];
         allEnemys[0].transform.localScale = new Vector3(currentBossSize, currentBossSize, currentBossSize);
         allEnemys[0].GetComponent<MovementSmallEnemie>().State = currentBossSize;
         allEnemys[0].GetComponent<Animator>().SetInteger("EnemyLevel", 4);
 
-        for (int i = 1; i < NumEnemies[level]; i++)
+        for (int i = 1; i < allEnemys.Length; i++)
         {
             allEnemys[i] = CreateObstacle();
         }
-        enemyLeft = NumEnemies[GameManager.Instance.currentLevel];
+        enemyLeft = allEnemys.Length;
         UpdateEnemiesLeft();
     }
 }

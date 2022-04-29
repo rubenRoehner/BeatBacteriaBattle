@@ -16,7 +16,7 @@ public class GameUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider.value = 0.3f;
+        slider.value = 0f;
         timeRemaining = TimerStartValue;
     }
 

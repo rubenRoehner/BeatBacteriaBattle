@@ -20,9 +20,7 @@ public class MovementSmallEnemie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         rid.AddForce(new Vector2(Random.Range(-currentSpeed, currentSpeed), Random.Range(-currentSpeed, currentSpeed)));
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

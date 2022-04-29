@@ -25,10 +25,9 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
-    void Start()
+    public void Start()
     {
         StartGame();
     }
@@ -92,5 +91,5 @@ public class GameManager : MonoBehaviour
 
 public enum GameState
 {
-    IN_GAME, PAUSED, LEVEL_COMPLETE, GAME_OVER
+    IN_GAME, PAUSED, LEVEL_COMPLETE, GAME_OVER, TUTORIAL
 }
