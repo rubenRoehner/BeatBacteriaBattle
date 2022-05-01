@@ -26,7 +26,7 @@ public class HeartbeatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.gameState == GameState.IN_GAME)
+        if(GameStateManager.Instance.gameState == GameState.IN_GAME)
         {
             if(!audioSource.isPlaying)
             {

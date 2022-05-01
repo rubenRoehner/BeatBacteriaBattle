@@ -5,13 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public GameState gameState = GameState.IN_GAME;
-
     public GameObject completeLevelUI;
     public GameObject gameOverUI;
     public HeartbeatController heartbeatController;
     public ObstacleGenerator obstacleGenerator;
     public PlayerController playerController;
+    public Tutorial tutorial;
     public GameUI gameUI;
 
     public int currentLevel = 0;
@@ -29,7 +28,13 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        StartGame();
+        if(GameStateManager.Instance.gameState == GameState.TUTORIAL)
+        {
+            tutorial.StartTutorial();
+        } else
+        {
+            StartGame();
+        }
     }
 
     public void Merge(GameObject go1, GameObject go2)
@@ -47,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameState = GameState.GAME_OVER;
+        GameStateManager.Instance.gameState = GameState.GAME_OVER;
         gameOverUI.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -55,12 +60,12 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Time.timeScale = 1f;
-        gameState = GameState.IN_GAME;
+        GameStateManager.Instance.gameState = GameState.IN_GAME;
     }
 
     public void Restart()
     {
-        gameState = GameState.IN_GAME;
+        GameStateManager.Instance.gameState = GameState.IN_GAME;
         gameOverUI.SetActive(false);
         completeLevelUI.SetActive(false);
         obstacleGenerator.Reset(currentLevel);
@@ -70,7 +75,7 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel()
     {
-        gameState = GameState.LEVEL_COMPLETE;
+        GameStateManager.Instance.gameState = GameState.LEVEL_COMPLETE;
         completeLevelUI.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -88,9 +93,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-}
-
-public enum GameState
-{
-    IN_GAME, PAUSED, LEVEL_COMPLETE, GAME_OVER, TUTORIAL
 }
