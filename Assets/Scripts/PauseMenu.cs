@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Quitting...");
     }
 
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         GameManager.Instance.gameState = GameState.PAUSED;

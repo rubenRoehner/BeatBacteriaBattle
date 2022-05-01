@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
             Restart();
         }
     }
+
 }
 
 public enum GameState
