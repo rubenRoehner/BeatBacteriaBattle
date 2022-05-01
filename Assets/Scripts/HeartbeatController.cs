@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeartbeatController : MonoBehaviour
 {
     public AudioClip SlowHeartBeat;
     public AudioClip FastHeartBeat;
     public float SwitchIntervall = 20f;
+    public Image image;
+    public Texture slowHearbeatTexture;
+    public Texture fastHearbeatTexture;
 
     public HeartBeatRate heartBeatRate = HeartBeatRate.SLOW;
 
@@ -16,6 +20,7 @@ public class HeartbeatController : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        updateHeartBeatRate(heartBeatRate);
     }
 
     // Update is called once per frame
@@ -70,9 +75,13 @@ public class HeartbeatController : MonoBehaviour
         {
             case HeartBeatRate.SLOW:
                 this.audioSource.clip = SlowHeartBeat;
+                this.image.material.SetTexture("_PatternTex", slowHearbeatTexture);
+                this.image.material.SetFloat("_SpeedX", 0.5f);
                 break;
             case HeartBeatRate.FAST:
                 this.audioSource.clip = FastHeartBeat;
+                this.image.material.SetTexture("_PatternTex", fastHearbeatTexture);
+                this.image.material.SetFloat("_SpeedX", 0.75f);
                 break;
         }
         this.audioSource.Play();
