@@ -3,10 +3,15 @@ using UnityEngine.UI;
 
 public class ObstacleGenerator : MonoBehaviour
 
-{ 
+{
+    public GameObject obs;
+    public GameObject obs1;
+    public GameObject obs2;
+
+
     public GameObject Prefab;
     private static readonly int[] NumEnemies = {11, 30 , 40};
-    private static readonly int[] BossSize = { 10, 12, 16 };
+    public static readonly int[] BossSize = { 10, 20, 16 };
     private GameObject[] allEnemys;
     public float MinX = 3;
     public float MaxX = 23;
@@ -55,8 +60,9 @@ public class ObstacleGenerator : MonoBehaviour
         boss.transform.position = new Vector3(RandomInRange(MinX + 4, MaxX - 4), RandomInRange(MinY + 4, MaxY - 4), 0f);
         Debug.Log("posX: " + boss.transform.position.x + "posY" + boss.transform.position.y);
         int currentBossSize = BossSize[level];
-        boss.transform.localScale = new Vector3(currentBossSize, currentBossSize, currentBossSize);
+        boss.transform.localScale = new Vector3(currentBossSize - 3, currentBossSize -3 , currentBossSize);
         boss.GetComponent<MovementSmallEnemie>().State = currentBossSize;
+        boss.GetComponent<MovementSmallEnemie>().SlowSpeed = 2f;
         boss.GetComponent<Animator>().SetInteger("EnemyLevel", 4);
         return boss;
     }
@@ -87,7 +93,22 @@ public class ObstacleGenerator : MonoBehaviour
             allEnemys[i] = CreateObstacle();
         }
         enemyLeft = allEnemys.Length;
-        UpdateEnemiesLeft();
+
+        switch (level)
+        {
+            case 0: obs.SetActive(false); obs1.SetActive(false); obs2.SetActive(false); break;
+
+            case 1: obs.SetActive(true); obs1.SetActive(false); obs2.SetActive(false); break;
+
+            case 2: obs.SetActive(true); obs1.SetActive(true); obs2.SetActive(true); break;
+
+
+            default: obs.SetActive(true); obs1.SetActive(true); obs2.SetActive(true); break;
+        
+
+    }
+
+                UpdateEnemiesLeft();
     }
 
 

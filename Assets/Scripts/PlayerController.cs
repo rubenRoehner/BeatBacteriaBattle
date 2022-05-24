@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     public float FastSpeed = 80F;
     public float SlowSpeed = 20F;
     private float CurrentSpeed = 50F;
-    private int state = 1;
+    public int state = 1;
     bool changeSize = false;
 
     Rigidbody2D rigidBody;
@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
             changeSize = true;
             GameObject.Find("EnemyManager").GetComponent<ObstacleGenerator>().Kill(collision.gameObject.GetComponent<MovementSmallEnemie>().State);
             Destroy(collision.gameObject);
+            GameManager.Instance.SoundBigger();
 
         }
         else if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null)
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
     public void Reset()
     {
         transform.position = new Vector3(0, 0, 0);
-        transform.localScale = new Vector3(1.1f, 1.1f, 2f);
+        transform.localScale = new Vector3(2.5f, 2.5f, 2f);
         state = 1;
     }
 }

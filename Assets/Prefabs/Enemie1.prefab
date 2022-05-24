@@ -122,6 +122,7 @@ MonoBehaviour:
   State: 1
   SlowSpeed: 4
   HighSpeed: 20
+  player: {fileID: 4789278064282661603, guid: fd265f33487d1d64b89532a639c40b2c, type: 3}
 --- !u!58 &2521200907316099104
 CircleCollider2D:
   m_ObjectHideFlags: 0

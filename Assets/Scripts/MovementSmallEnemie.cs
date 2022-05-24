@@ -11,6 +11,7 @@ public class MovementSmallEnemie : MonoBehaviour
     public int State = 1;
     public float SlowSpeed = 4F;
     public float HighSpeed = 20F;
+    
 
     void Start()
     {
@@ -20,7 +21,14 @@ public class MovementSmallEnemie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rid.AddForce(new Vector2(Random.Range(-currentSpeed, currentSpeed), Random.Range(-currentSpeed, currentSpeed)));
+        if (State <= GameManager.Instance.playerController.state)
+        {
+            rid.AddForce(new Vector2(Random.Range(-currentSpeed, currentSpeed), Random.Range(-currentSpeed, currentSpeed)));
+        }
+        else if (State > GameManager.Instance.playerController.state)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, GameManager.Instance.playerController.transform.position, SlowSpeed * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
