@@ -11,6 +11,8 @@ public class MovementSmallEnemie : MonoBehaviour
     public int State = 1;
     public float SlowSpeed = 4F;
     public float HighSpeed = 20F;
+    private float replaceTime = 0;
+    private float replaceTimeCap = 3;
     
 
     void Start()
@@ -29,6 +31,12 @@ public class MovementSmallEnemie : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, GameManager.Instance.playerController.transform.position, SlowSpeed * Time.deltaTime);
         }
+
+        if(replaceTimeCap > 0)
+        {
+            replaceTimeCap -= Time.deltaTime;
+        } 
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -36,6 +44,11 @@ public class MovementSmallEnemie : MonoBehaviour
         if(collision.gameObject.GetComponent<MovementSmallEnemie>() != null && collision.gameObject.GetComponent<MovementSmallEnemie>().State == State && State < 6)
         {
             GameManager.Instance.Merge(gameObject, collision.gameObject);
+        }
+
+        if(collision.gameObject.tag == "respawnCollider" && replaceTimeCap > 0)
+        {
+            transform.position = new Vector3(5, 5, 5f);
         }
 
     }

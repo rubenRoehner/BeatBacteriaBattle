@@ -44,5 +44,7 @@ public class GameUI : MonoBehaviour
     public void UpdateLevelLabel(int level)
     {
         levelLabel.text = "Level " + level;
+        timeRemaining = TimerStartValue;
+        DisplayTime(timeRemaining);
     }
 }

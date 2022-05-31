@@ -7,16 +7,17 @@ public class ObstacleGenerator : MonoBehaviour
     public GameObject obs;
     public GameObject obs1;
     public GameObject obs2;
+    public GameObject level0;
 
 
     public GameObject Prefab;
     private static readonly int[] NumEnemies = {11, 30 , 40};
-    public static readonly int[] BossSize = { 10, 20, 16 };
+    public static readonly int[] BossSize = { 8, 13, 16 };
     private GameObject[] allEnemys;
-    public float MinX = 3;
-    public float MaxX = 23;
-    public float MinY = 3;
-    public float MaxY = 15;
+    public float MinX = 8;
+    public float MaxX = 20;
+    public float MinY = 7;
+    public float MaxY = 13;
 
     private float enemyLeft = 0f;
 
@@ -39,29 +40,33 @@ public class ObstacleGenerator : MonoBehaviour
     private void UpdateEnemiesLeft()
     {
         int numEnemies = NumEnemies[GameManager.Instance.currentLevel];
-        int sizeArray = allEnemys.Length;
         float value = 1 - ((enemyLeft - 1) / numEnemies);
 
-        Debug.Log("enemyLeft: " + enemyLeft + ", NumEnemies: " + numEnemies + ", ArraySize: " + sizeArray + "value" + value);
-
         GameManager.Instance.gameUI.slider.value = value;
+
+        if(enemyLeft == 1)
+        {
+            GameManager.Instance.checkForBoss();
+        }
     }
 
     private GameObject CreateObstacle()
     {
         var obstacle = Instantiate(Prefab);
-        obstacle.transform.position = new Vector3(RandomInRange(MinX, MaxX), Random.Range(MinY, MaxY), 0f);
+
+        obstacle.transform.position = new Vector3(((int) Random.Range(0, 1) <= 0.5 ? -1 : 1) * RandomInRange(MinX, MaxX), ((int)Random.Range(0, 1) <= 0.5 ? -1 : 1) * Random.Range(MinY, MaxY), 0f);
         return obstacle;
     }
+
 
     private GameObject CreateBoss(int level)
     {
         GameObject boss = Instantiate(Prefab);
-        boss.transform.position = new Vector3(RandomInRange(MinX + 4, MaxX - 4), RandomInRange(MinY + 4, MaxY - 4), 0f);
+        boss.transform.position = new Vector3(Random.Range(MinX + 5, MaxX), Random.Range(MinY + 5, MaxY), 0f);
         Debug.Log("posX: " + boss.transform.position.x + "posY" + boss.transform.position.y);
         int currentBossSize = BossSize[level];
-        boss.transform.localScale = new Vector3(currentBossSize - 3, currentBossSize -3 , currentBossSize);
-        boss.GetComponent<MovementSmallEnemie>().State = currentBossSize;
+        boss.transform.localScale = new Vector3(currentBossSize , currentBossSize  , currentBossSize);
+        boss.GetComponent<MovementSmallEnemie>().State = NumEnemies[level];
         boss.GetComponent<MovementSmallEnemie>().SlowSpeed = 2f;
         boss.GetComponent<Animator>().SetInteger("EnemyLevel", 4);
         return boss;
@@ -98,12 +103,12 @@ public class ObstacleGenerator : MonoBehaviour
         {
             case 0: obs.SetActive(false); obs1.SetActive(false); obs2.SetActive(false); break;
 
-            case 1: obs.SetActive(true); obs1.SetActive(false); obs2.SetActive(false); break;
+            case 1: obs.SetActive(true); obs1.SetActive(false); obs2.SetActive(false); level0.SetActive(false); break ;
 
-            case 2: obs.SetActive(true); obs1.SetActive(true); obs2.SetActive(true); break;
+            case 2: obs.SetActive(true); obs1.SetActive(true); obs2.SetActive(true); level0.SetActive(false); break;
 
 
-            default: obs.SetActive(true); obs1.SetActive(true); obs2.SetActive(true); break;
+            default: obs.SetActive(true); obs1.SetActive(true); obs2.SetActive(true); level0.SetActive(false); break;
         
 
     }

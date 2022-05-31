@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float FastSpeed = 80F;
-    public float SlowSpeed = 20F;
+    public float FastSpeed = 50F;
+    public float SlowSpeed = 30F;
     private float CurrentSpeed = 50F;
     public int state = 1;
     bool changeSize = false;
 
-    Rigidbody2D rigidBody;
+    public Rigidbody2D rigidBody;
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +70,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null &&
            collision.gameObject.GetComponent<MovementSmallEnemie>().State <= state)
         {
-            state++;
+            Debug.Log(state);
+            state += collision.gameObject.GetComponent<MovementSmallEnemie>().State;
             changeSize = true;
             GameObject.Find("EnemyManager").GetComponent<ObstacleGenerator>().Kill(collision.gameObject.GetComponent<MovementSmallEnemie>().State);
             Destroy(collision.gameObject);
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null)
         {
+            Debug.Log(collision.gameObject.GetComponent<MovementSmallEnemie>().State + " " + state);
             GameManager.Instance.GameOver();
         }
     }

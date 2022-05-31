@@ -44,30 +44,32 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        if(GameStateManager.Instance.gameState == GameState.TUTORIAL)
+        music_ = AddAudio(true, 0.5f, music);
+        slurp_ = AddAudio(false, 0.1f, slurp);
+        rdy_ = AddAudio(false, 0.5f, rdy);
+        mix_ = AddAudio(true, 0.5f, mix);
+        lossSound_ = AddAudio(false, 0.1f, lossSound);
+        WinSound_ = AddAudio(false, 0.1f, WinSound);
+
+        
+
+        if (GameStateManager.Instance.gameState == GameState.TUTORIAL)
         {
+            mix_.Play();
             tutorial.StartTutorial();
         } else
         {
             StartGame();
         }
 
-        music_ = AddAudio(true, music);
-        slurp_ = AddAudio(false, slurp);
-        rdy_ = AddAudio(false, music);
-        mix_ = AddAudio(true, music);
-        lossSound_ = AddAudio(false, music);
-        WinSound_ = AddAudio(false, music);
-
     }
 
     public void checkForBoss()
     {
-        if(ObstacleGenerator.BossSize[currentLevel] < playerController.state)
-        {
-            music_.Stop();
+ 
+            
             rdy_.Play();
-        }
+       
     }
     public void SoundBigger()
     {
@@ -93,13 +95,17 @@ public class GameManager : MonoBehaviour
         GameStateManager.Instance.gameState = GameState.GAME_OVER;
         gameOverUI.SetActive(true);
         Time.timeScale = 0f;
+        music_.Stop();
         lossSound_.Play();
+        mix_.Play();
     }
 
     public void StartGame()
     {
         Time.timeScale = 1f;
         GameStateManager.Instance.gameState = GameState.IN_GAME;
+        gameUI.UpdateLevelLabel(currentLevel + 1);
+        playerController.rigidBody.velocity = new Vector2(0, 0);
         mix_.Stop();
         music_.Play();
     }
@@ -138,12 +144,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public AudioSource AddAudio(bool loop,  AudioClip clip)
+    public AudioSource AddAudio(bool loop,  float vol, AudioClip clip)
     {
         AudioSource newAudio = gameObject.AddComponent<AudioSource>();
         newAudio.clip = clip; 
         newAudio.loop = loop;
         newAudio.playOnAwake = true;
+        newAudio.volume = vol;
         return newAudio;
     }
 
