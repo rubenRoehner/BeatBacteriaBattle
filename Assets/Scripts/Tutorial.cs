@@ -8,29 +8,17 @@ public class Tutorial : MonoBehaviour
 {
     public GameObject tutorialContainer;
 
-    public TextMeshProUGUI title;
-    public TextMeshProUGUI text;
-
     public Button nextButton;
     public Button prevButton;
     public Button playButton;
 
-    public GameObject KeyBoardContainer;
-
-    public GameObject HighlightHeartBeat;
-    public GameObject HighlightTimer;
-    public GameObject HighlightSlider;
+    public GameObject generalTutorial;
+    public GameObject heartbeatTutorial;
+    public GameObject timerTutorial;
+    public GameObject bossTutorial;
+    public GameObject controlsTutorial;
 
     public int tutorialIndex = 0;
-
-    private static readonly string[] tutorialTexts =
-    {
-        "Friss die gegnerischen Bakterien, um zu wachsen. Sobald du groß genug bist, besiege den Boss.",
-        "Wenn der Herzschlag schneller wird, passt sich die Spielgeschwindigkeit daran an.",
-        "Besiege den Boss bevor die Zeit abgelaufen ist.",
-        "Wenn der Balken voll ist, bist du groß genug, um den Boss zu besiegen.",
-        "Bewege dich mit den Pfeiltasten.",
-    };
 
     public void StartTutorial()
     {
@@ -48,57 +36,75 @@ public class Tutorial : MonoBehaviour
 
     private void updateUI()
     {
-        text.SetText(tutorialTexts[tutorialIndex]);
+        hideGameObjects();
+        switch(tutorialIndex)
+        {
+            case 0: presentGeneralTutorial();
+                break;
 
-        if (tutorialIndex == 0)
-        {
-            title.gameObject.SetActive(true);
-            prevButton.gameObject.SetActive(false); 
-        } else
-        {
-            title.gameObject.SetActive(false);
-            prevButton.gameObject.SetActive(true);
-        }
+            case 1:
+                presentHeartbeatTutorial();
+                break;
 
-        if (tutorialIndex == 1)
-        {
-            HighlightHeartBeat.SetActive(true);
-        }
-        else
-        {
-            HighlightHeartBeat.SetActive(false);
-        }
+            case 2:
+                presentTimerTutorial();
+                break;
 
-        if (tutorialIndex == 2)
-        {
-            HighlightTimer.SetActive(true);
-        }
-        else
-        {
-            HighlightTimer.SetActive(false);
-        }
+            case 3:
+                presentBossTutorial();
+                break;
 
-        if (tutorialIndex == 3)
-        {
-            HighlightSlider.SetActive(true);
+            case 4:
+                presentControlsTutorial();
+                break;
         }
-        else
-        {
-            HighlightSlider.SetActive(false);
-        }
+    }
 
-        if (tutorialIndex == tutorialTexts.Length - 1)
-        {
-            nextButton.gameObject.SetActive(false);
-            playButton.gameObject.SetActive(true);
-            KeyBoardContainer.SetActive(true);
-        }
-        else
-        {
-            nextButton.gameObject.SetActive(true);
-            playButton.gameObject.SetActive(false);
-            KeyBoardContainer.SetActive(false);
-        }
+    private void presentGeneralTutorial()
+    {
+        nextButton.gameObject.SetActive(true);
+        generalTutorial.SetActive(true);
+    }
+
+    private void presentHeartbeatTutorial()
+    {
+        nextButton.gameObject.SetActive(true);
+        prevButton.gameObject.SetActive(true);
+        heartbeatTutorial.SetActive(true);
+    }
+
+    private void presentTimerTutorial()
+    {
+        nextButton.gameObject.SetActive(true);
+        prevButton.gameObject.SetActive(true);
+        timerTutorial.SetActive(true);
+    }
+
+    private void presentBossTutorial()
+    {
+        nextButton.gameObject.SetActive(true);
+        prevButton.gameObject.SetActive(true);
+        bossTutorial.SetActive(true);
+    }
+
+    private void presentControlsTutorial()
+    {
+        playButton.gameObject.SetActive(true);
+        prevButton.gameObject.SetActive(true);
+        controlsTutorial.SetActive(true);
+    }
+
+    private void hideGameObjects()
+    {
+        nextButton.gameObject.SetActive(false);
+        prevButton.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(false);
+
+        generalTutorial.SetActive(false);
+        heartbeatTutorial.SetActive(false);
+        timerTutorial.SetActive(false);
+        bossTutorial.SetActive(false);
+        controlsTutorial.SetActive(false);
     }
 
     public void OnNextButtonClicked()
