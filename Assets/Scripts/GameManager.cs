@@ -66,10 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void checkForBoss()
     {
- 
-            
             rdy_.Play();
-       
     }
     public void SoundBigger()
     {
