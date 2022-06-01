@@ -466,7 +466,7 @@ MonoBehaviour:
   slurp: {fileID: 8300000, guid: b794abbdc914fbb4e9c3f7b262c9b483, type: 3}
   rdy: {fileID: 8300000, guid: b01cd7dc36367f8439132fc4ab4b085a, type: 3}
   mix: {fileID: 8300000, guid: bd72e7b642b6fc2479b94a17e6bb872a, type: 3}
-  lossSound: {fileID: 8300000, guid: 45452ee50b05be94dbb8a345f507b318, type: 3}
+  lossSound: {fileID: 8300000, guid: eb682e90e2a526e49ac1e6620c2f7287, type: 3}
   WinSound: {fileID: 8300000, guid: 68b9d3a2e44f30b41b32ff2dcfa8990d, type: 3}
 --- !u!114 &16317102
 MonoBehaviour:
@@ -480,42 +480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08305623f22e7a44bcd6ecb48baf1fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!84 &39980483
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
-  m_Width: 2628
-  m_Height: 452
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 2
-  m_ColorFormat: 59
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &41808150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,42 +3789,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!84 &554970508
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 2
-  m_ColorFormat: 59
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &558638954
 GameObject:
   m_ObjectHideFlags: 0
@@ -8685,6 +8613,42 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!84 &1199029722
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 3
+  m_Width: 640
+  m_Height: 480
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 2
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1201364680
 GameObject:
   m_ObjectHideFlags: 0
@@ -11230,8 +11194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838f3549a592d427ba85363b23d0eaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlowHeartBeat: {fileID: 8300000, guid: 6d7a0f4aaf0d14768bd72a7488417d6b, type: 3}
-  FastHeartBeat: {fileID: 8300000, guid: f65c412af5be44bf1a7140fdf72c5473, type: 3}
+  SlowHeartBeat: {fileID: 8300000, guid: 4c319080a0439fa48b4ff8d222e145e6, type: 3}
+  FastHeartBeat: {fileID: 8300000, guid: 3fbfb806a85023e4fb8841cf2c5ab564, type: 3}
   SwitchIntervall: 10
   image: {fileID: 1849282653}
   slowHearbeatTexture: {fileID: 2800000, guid: 7008b633b7270430dba387ac398ee22a, type: 3}
@@ -13082,10 +13046,10 @@ PrefabInstance:
     - target: {fileID: 4789278062869321376, guid: fd265f33487d1d64b89532a639c40b2c, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 554970508}
+      objectReference: {fileID: 1199029722}
     - target: {fileID: 4789278062869321376, guid: fd265f33487d1d64b89532a639c40b2c, type: 3}
       propertyPath: orthographic size
-      value: 10.530989
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4789278062869321376, guid: fd265f33487d1d64b89532a639c40b2c, type: 3}
       propertyPath: m_BackGroundColor.a

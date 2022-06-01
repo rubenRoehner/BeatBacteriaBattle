@@ -11,7 +11,7 @@ public class MovementSmallEnemie : MonoBehaviour
     public int State = 1;
     public float SlowSpeed = 4F;
     public float HighSpeed = 20F;
-    private float replaceTime = 0;
+
     private float replaceTimeCap = 3;
     
 

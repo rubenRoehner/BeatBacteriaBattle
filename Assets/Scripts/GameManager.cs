@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void checkForBoss()
     {
+        playerController.GetComponent<Animator>().SetTrigger("Ready");
             rdy_.Play();
     }
     public void SoundBigger()
