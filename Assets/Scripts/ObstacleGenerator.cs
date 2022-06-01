@@ -66,7 +66,7 @@ public class ObstacleGenerator : MonoBehaviour
         Debug.Log("posX: " + boss.transform.position.x + "posY" + boss.transform.position.y);
         int currentBossSize = BossSize[level];
         boss.transform.localScale = new Vector3(currentBossSize , currentBossSize  , currentBossSize);
-        boss.GetComponent<MovementSmallEnemie>().State = BossSize[level];
+        boss.GetComponent<MovementSmallEnemie>().State = NumEnemies[level];
         boss.GetComponent<MovementSmallEnemie>().SlowSpeed = 2f;
         boss.GetComponent<Animator>().SetInteger("EnemyLevel", 4);
         return boss;
