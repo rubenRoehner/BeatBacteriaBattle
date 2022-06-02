@@ -83,8 +83,7 @@ public class GameManager : MonoBehaviour
             go2.transform.localScale = new Vector3(go2.transform.localScale.x + 1 , go2.transform.localScale.y + 1, 2);
             go2.GetComponent<MovementSmallEnemie>().State += 1;
             int state = go2.GetComponent<MovementSmallEnemie>().State;
-            int enemyLevel = (int) Mathf.Log(state, 2) + 1;
-            go2.GetComponent<Animator>().SetInteger("EnemyLevel", enemyLevel);
+            go2.GetComponent<Animator>().SetInteger("EnemyLevel", state);
             obstacleGenerator.UpdateEnemiesLeft();
         }
     }
