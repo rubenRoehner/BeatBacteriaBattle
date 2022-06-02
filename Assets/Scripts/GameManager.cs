@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameUI gameUI;
 
     public int currentLevel = 0;
+    public float godmode = 3;
 
     public AudioClip music;
     public AudioClip slurp;
@@ -78,14 +79,18 @@ public class GameManager : MonoBehaviour
     {
         if(go1.activeSelf == true && go2.activeSelf == true)
         {
-
             Destroy(go1);
             go2.transform.localScale = new Vector3(go2.transform.localScale.x + 1 , go2.transform.localScale.y + 1, 2);
             go2.GetComponent<MovementSmallEnemie>().State += 1;
             int state = go2.GetComponent<MovementSmallEnemie>().State;
             go2.GetComponent<Animator>().SetInteger("EnemyLevel", state);
-            obstacleGenerator.UpdateEnemiesLeft();
+            UpdateEnemiesLeft();
         }
+    }
+
+    public void UpdateEnemiesLeft()
+    {
+        obstacleGenerator.UpdateEnemiesLeft();
     }
 
     public void GameOver()

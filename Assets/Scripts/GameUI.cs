@@ -9,7 +9,7 @@ public class GameUI : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI timer;
     public TextMeshProUGUI levelLabel;
-    public int TimerStartValue = 150;
+    public int TimerStartValue = 90;
     private float timeRemaining = 0;
 
 

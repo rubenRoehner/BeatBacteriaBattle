@@ -12,12 +12,12 @@ public class ObstacleGenerator : MonoBehaviour
 
     public GameObject Prefab;
     private static readonly int[] NumEnemies = {11, 30 ,40};
-    public static readonly int[] BossSize = { 8, 13, 16 };
+    public static readonly int[] BossSize = { 6, 11, 14 };
     private GameObject[] allEnemys;
     public float MinX = 8;
-    public float MaxX = 20;
+    public float MaxX = 19;
     public float MinY = 7;
-    public float MaxY = 13;
+    public float MaxY = 12;
 
     private float enemyLeft = 0f;
 
@@ -63,7 +63,7 @@ public class ObstacleGenerator : MonoBehaviour
         Debug.Log("posX: " + boss.transform.position.x + "posY" + boss.transform.position.y);
         int currentBossSize = BossSize[level];
         boss.transform.localScale = new Vector3(currentBossSize , currentBossSize  , currentBossSize);
-        boss.GetComponent<MovementSmallEnemie>().State = NumEnemies[level];
+        boss.GetComponent<MovementSmallEnemie>().State = NumEnemies[level] + 1;
         boss.GetComponent<MovementSmallEnemie>().SlowSpeed = 2f;
         boss.GetComponent<Animator>().SetInteger("EnemyLevel", 4);
         return boss;

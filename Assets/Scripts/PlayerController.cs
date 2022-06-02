@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     private float CurrentSpeed = 50F;
     public int state = 1;
     bool changeSize = false;
-    private float godmode = 3;
     public Rigidbody2D rigidBody;
 
     // Start is called before the first frame update
@@ -38,9 +37,9 @@ public class PlayerController : MonoBehaviour
     {
         ChangeSize(state);
 
-        if(godmode > 0)
+        if(GameManager.Instance.godmode > 0)
         {
-            godmode -= Time.deltaTime;
+            GameManager.Instance.godmode -= Time.deltaTime;
         }
 
         UpdateSpeed();
@@ -78,12 +77,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log(state);
             state += Mathf.RoundToInt(Mathf.Pow(2f, collision.gameObject.GetComponent<MovementSmallEnemie>().State - 1));
             changeSize = true;
-            GameObject.Find("EnemyManager").GetComponent<ObstacleGenerator>().Kill(collision.gameObject.GetComponent<MovementSmallEnemie>().State);
+            int stateOfEnemy = collision.gameObject.GetComponent<MovementSmallEnemie>().State;
             Destroy(collision.gameObject);
+            GameObject.Find("EnemyManager").GetComponent<ObstacleGenerator>().Kill(stateOfEnemy);
             GameManager.Instance.SoundBigger();
-
         }
-        else if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null && godmode <= 0)
+        else if (collision.gameObject.GetComponent<MovementSmallEnemie>() != null && GameManager.Instance.godmode <= 0)
         {
             Debug.Log(collision.gameObject.GetComponent<MovementSmallEnemie>().State + " " + state);
             GameManager.Instance.GameOver();
@@ -108,6 +107,6 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         transform.localScale = new Vector3(2.5f, 2.5f, 2f);
         state = 1;
-        godmode = 3;
+        GameManager.Instance.godmode = 3;
     }
 }

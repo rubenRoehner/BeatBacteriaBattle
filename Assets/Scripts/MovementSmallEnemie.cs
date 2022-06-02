@@ -27,7 +27,7 @@ public class MovementSmallEnemie : MonoBehaviour
         {
             rid.AddForce(new Vector2(Random.Range(-currentSpeed, currentSpeed), Random.Range(-currentSpeed, currentSpeed)));
         }
-        else if (State > GameManager.Instance.playerController.state)
+        else if (State > GameManager.Instance.playerController.state && GameManager.Instance.godmode <= 0)
         {
             transform.position = Vector2.MoveTowards(transform.position, GameManager.Instance.playerController.transform.position, SlowSpeed * Time.deltaTime);
         }
