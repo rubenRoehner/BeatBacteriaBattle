@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
             int state = go2.GetComponent<MovementSmallEnemie>().State;
             int enemyLevel = (int) Mathf.Log(state, 2) + 1;
             go2.GetComponent<Animator>().SetInteger("EnemyLevel", enemyLevel);
+            obstacleGenerator.UpdateEnemiesLeft();
         }
     }
 

@@ -29,7 +29,6 @@ public class ObstacleGenerator : MonoBehaviour
 
     public void Kill(int stateOfEnemy)
     {
-        enemyLeft -= stateOfEnemy;
         UpdateEnemiesLeft();
         if (enemyLeft <= 0)
         {
@@ -37,12 +36,10 @@ public class ObstacleGenerator : MonoBehaviour
         }
     }
 
-    private void UpdateEnemiesLeft()
+    public void UpdateEnemiesLeft()
     {
-        int numEnemies = NumEnemies[GameManager.Instance.currentLevel];
-        float value = 1 - ((enemyLeft - 1) / numEnemies);
-
-        GameManager.Instance.gameUI.slider.value = value;
+        enemyLeft = Object.FindObjectsOfType(typeof(MovementSmallEnemie)).Length - 1;
+        Debug.Log("enemiesLeft: " + enemyLeft.ToString());
 
         if(enemyLeft == 1)
         {
@@ -74,7 +71,6 @@ public class ObstacleGenerator : MonoBehaviour
 
     public void Reset(int level)
     {
-        enemyLeft = 0;
         RemoveExistingEnemies();
         CreateEnemies(level);
         UpdateEnemiesLeft();
