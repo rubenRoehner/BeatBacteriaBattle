@@ -45,10 +45,10 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        music_ = AddAudio(true, 0.5f, music);
+        music_ = AddAudio(true, 0.4f, music);
         slurp_ = AddAudio(false, 0.1f, slurp);
-        rdy_ = AddAudio(false, 0.5f, rdy);
-        mix_ = AddAudio(true, 0.5f, mix);
+        rdy_ = AddAudio(false, 0.4f, rdy);
+        mix_ = AddAudio(true, 0.4f, mix);
         lossSound_ = AddAudio(false, 0.1f, lossSound);
         WinSound_ = AddAudio(false, 0.1f, WinSound);
 
